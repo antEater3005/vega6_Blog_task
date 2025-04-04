@@ -38,11 +38,19 @@ Ensure you have the following installed:
    ```sh
    npm install
    ```
-3. Start the backend server:
+3. Set up environment variables:
+   - Create a `.env` file in the backend directory
+   - Add the following environment variables:
+     ```env
+     PORT=5000
+     MONGO_URI=your_mongodb_connection_string
+     JWT_SECRET=your_secret_key
+     ```
+4. Start the backend server:
    ```sh
    npm run dev
    ```
-4. The backend will run on `http://localhost:5000`
+5. The backend will run on `http://localhost:5000`
 
 ---
 
