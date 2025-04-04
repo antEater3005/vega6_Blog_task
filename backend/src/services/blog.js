@@ -49,10 +49,13 @@ export const updateBlog = async (blogId, updateBlog) => {
   }
 };
 
-export const deleteBlog = async (id) => {
+export const deleteBlog = async (id, userId) => {
   try {
-    const blog = await Blog.findByIdAndDelete(id);
-    await deleteFile(blog.image);
+    const blog = await Blog.findById(id);
+    if (blog.userId.toString() !== userId)
+      throw new Error('No delete permission.');
+    deleteFile(blog.image);
+    return await Blog.findByIdAndDelete(id);
   } catch (error) {
     throw new Error('Error deleting blog: ' + error.message);
   }

@@ -44,15 +44,16 @@ export const updateBlog = async (req, res) => {
 };
 
 export const deleteBlog = async (req, res) => {
-  const { blogId } = req.params;
+  const blogId = req.params.blogId;
+  const userId = req.user._id;
   try {
-    const deletedBlog = await blogService.deleteBlog(blogId);
+    const deletedBlog = await blogService.deleteBlog(blogId, userId);
 
     if (!deletedBlog) {
       return res.status(404).json({ error: 'Blog not found.' });
     }
 
-    res.status(200).json({ message: 'Blog permanently deleted.' });
+    res.status(200).json({ message: 'Blog deleted.' });
   } catch (error) {
     console.error(error);
     res.status(500).json({ message: 'Some error occurred!' });

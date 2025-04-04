@@ -100,7 +100,7 @@ function Dashboard() {
               <div className=''>
                 <button
                   className=' bg-red-600 text-white px-1 rounded-sm hover:cursor-pointer ml-4'
-                  onClick={handleDelete}
+                  onClick={() => handleDelete(blog._id)}
                 >
                   Delete
                 </button>
